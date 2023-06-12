@@ -20,10 +20,10 @@ def load_files():
 
 load_files()
 
-token_path = "./first_tokenizer"
-model_path = "./first_model"
+st.write("ALL FILES DOWNLOADED!")
 
-st.write("done")
+token_path = "./first_tokenizer/"
+model_path = "./first_model/"
 
 @st.cache_resource
 def load_model(model_path=model_path, tokenizer_path=token_path):
@@ -32,9 +32,13 @@ def load_model(model_path=model_path, tokenizer_path=token_path):
 
 model = load_model()
 
+st.write("MODEL LOADED!")
+
 st.header("\U0001F4DD Text Summarizer")
 
 text_area = st.text_area('Paste text here', height=500)
+
+st.write("CHECKPOINT 1")
 
 with st.sidebar:
     st.header('Advanced settings')
@@ -54,6 +58,9 @@ if st.button('Summarize'):
         text = text_area
 
         with st.spinner(text="Summarization in progress"):
+            
+            st.write("CHECKPOINT 2")
+            
             output = model(text, min_length=min_token, max_length=max_token)
             generated_summary = output[0]['summary_text']
             
