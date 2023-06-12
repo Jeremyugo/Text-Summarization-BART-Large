@@ -24,7 +24,7 @@ load_files()
 st.write("ALL FILES DOWNLOADED!")
 
 st.write(os.curdir)
-os.write(os.listdir(os.curdir))
+st.write(os.listdir(os.curdir))
 
 st.write(os.getcwd())
 
