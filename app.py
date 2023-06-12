@@ -23,10 +23,11 @@ load_files()
 
 st.write("ALL FILES DOWNLOADED!")
 
-st.write(os.curdir)
-st.write(os.listdir(os.curdir))
+current_directory = '.'
+folders = [f for f in os.listdir(current_directory) if os.path.isdir(os.path.join(current_directory, f))]
 
-st.write(os.getcwd())
+folder_paths = [os.path.join(current_directory, folder) for folder in folders]
+st.write(folder_paths)
 
 # token_path = "first_tokenizer\\"
 # model_path = "first_model\\"
