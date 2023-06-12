@@ -23,55 +23,55 @@ load_files()
 
 st.write("ALL FILES DOWNLOADED!")
 
-current_directory = '.'
-folders = [f for f in os.listdir(current_directory) if os.path.isdir(os.path.join(current_directory, f))]
+# current_directory = '.'
+# folders = [f for f in os.listdir(current_directory) if os.path.isdir(os.path.join(current_directory, f))]
 
-folder_paths = [os.path.join(current_directory, folder) for folder in folders]
-st.write(folder_paths)
+# folder_paths = [os.path.join(current_directory, folder) for folder in folders]
+# st.write(folder_paths)
 
-# token_path = "first_tokenizer\\"
-# model_path = "first_model\\"
+token_path = "./first_tokenizer"
+model_path = "./first_model"
 
-# @st.cache_resource
-# def load_model(model_path=model_path, token_path=token_path):
-#     model = pipeline("summarization", tokenizer=token_path, model=model_path)
-#     return model
+@st.cache_resource
+def load_model():
+    model = pipeline("summarization", tokenizer="./first_tokenizer", model="./first_model")
+    return model
 
-# model = load_model()
+model = load_model()
 
-# st.write("MODEL LOADED!")
+st.write("MODEL LOADED!")
 
-# st.header("\U0001F4DD Text Summarizer")
+st.header("\U0001F4DD Text Summarizer")
 
-# text_area = st.text_area('Paste text here', height=500)
+text_area = st.text_area('Paste text here', height=500)
 
-# st.write("CHECKPOINT 1")
+st.write("CHECKPOINT 1")
 
-# with st.sidebar:
-#     st.header('Advanced settings')
-#     st.write("To control the size of the summarized text, toggle the slider below")
-#     min_token = st.slider('Minimum summary length', min_value=10, max_value=50, value=30)
-#     max_token = st.slider('Maximum summary length', min_value=70, max_value=300, value=100)
-#     st.write(' ')
-#     st.markdown('Made by [Jeremiah Chinyelugo](https://linkedin.com/in/jeremiah-chinyelugo)')
-#     st.write(' ')
-#     st.markdown('Source code can be found [here](https://github.com/Jeremyugo/Text-Summarization-BART-Large)')
+with st.sidebar:
+    st.header('Advanced settings')
+    st.write("To control the size of the summarized text, toggle the slider below")
+    min_token = st.slider('Minimum summary length', min_value=10, max_value=50, value=30)
+    max_token = st.slider('Maximum summary length', min_value=70, max_value=300, value=100)
+    st.write(' ')
+    st.markdown('Made by [Jeremiah Chinyelugo](https://linkedin.com/in/jeremiah-chinyelugo)')
+    st.write(' ')
+    st.markdown('Source code can be found [here](https://github.com/Jeremyugo/Text-Summarization-BART-Large)')
 
-# if st.button('Summarize'):
-#     if len(text_area) < 1:
-#         st.write('Please paste a text')
-#     else:
-#         st.subheader('Summarized text:')
-#         text = text_area
+if st.button('Summarize'):
+    if len(text_area) < 1:
+        st.write('Please paste a text')
+    else:
+        st.subheader('Summarized text:')
+        text = text_area
 
-#         with st.spinner(text="Summarization in progress"):
+        with st.spinner(text="Summarization in progress"):
             
-#             st.write("CHECKPOINT 2")
+            st.write("CHECKPOINT 2")
             
-#             output = model(text, min_length=min_token, max_length=max_token)
-#             generated_summary = output[0]['summary_text']
+            output = model(text, min_length=min_token, max_length=max_token)
+            generated_summary = output[0]['summary_text']
             
-#             st.write(generated_summary)
+            st.write(generated_summary)
 
 
     
