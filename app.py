@@ -1,6 +1,6 @@
 import streamlit as st
 import tensorflow as tf
-from transformers import pipeline, AutoTokenizer
+from transformers import pipeline, AutoTokenizer, TFAutoModelForSeq2SeqLM
 from io import StringIO
 import gdown
 import os
@@ -34,7 +34,7 @@ model_path = "./first_model"
 
 @st.cache_resource
 def load_model():
-    token = AutoTokenizer.from_pretrained(token_path)
+    token = TFAutoModelForSeq2SeqLM.from_pretrained(model_path)
     return token
     # model = pipeline("summarization", tokenizer="./first_tokenizer", model="./first_model")
     # return model
